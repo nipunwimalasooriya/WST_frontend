@@ -5,7 +5,6 @@ import styles from './UserManagementPage.module.css';
 import { useAuth } from '../hooks/useAuth';
 import type { UserRole } from '../types';
 
-// We must create a new User type for this page (without password_hash)
 type DisplayUser = {
   id: number;
   email: string;
@@ -16,7 +15,7 @@ type DisplayUser = {
 export const UserManagementPage = () => {
   const [users, setUsers] = useState<DisplayUser[]>([]);
   const [loading, setLoading] = useState(true);
-  const { user: adminUser } = useAuth(); // Get the currently logged-in admin
+  const { user: adminUser } = useAuth();
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -39,7 +38,6 @@ export const UserManagementPage = () => {
     try {
       await apiClient.put(`/users/${userId}/role`, { role: newRole });
       
-      // Update the role in our local state to reflect the change
       setUsers(users.map(u => 
         u.id === userId ? { ...u, role: newRole } : u
       ));
@@ -67,10 +65,11 @@ export const UserManagementPage = () => {
         <tbody>
           {users.map((user) => (
             <tr key={user.id}>
-              <td>{user.email}</td>
-              <td>{user.role}</td>
-              <td>{new Date(user.created_at).toLocaleDateString()}</td>
-              <td>
+              {/* --- Add data-label attributes --- */}
+              <td data-label="Email">{user.email}</td>
+              <td data-label="Role">{user.role}</td>
+              <td data-label="Member Since">{new Date(user.created_at).toLocaleDateString()}</td>
+              <td data-label="Actions">
                 {adminUser?.id === user.id ? (
                   <span className={styles.selfText}> (This is you) </span>
                 ) : (
