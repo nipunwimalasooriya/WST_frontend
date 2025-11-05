@@ -1,0 +1,49 @@
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.pageTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 2rem 0;
+}
+
+.userTable {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.userTable th,
+.userTable td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.userTable th {
+  background-color: var(--bg-default);
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.roleSelect {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-default);
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.selfText {
+  color: var(--text-secondary);
+  font-style: italic;
+}

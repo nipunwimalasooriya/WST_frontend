@@ -19,7 +19,7 @@ export const ProductsPage = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false); 
   const [productToDelete, setProductToDelete] = useState<number | null>(null); 
 
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, isAdmin } = useAuth();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -94,7 +94,7 @@ export const ProductsPage = () => {
     <div>
       <header className={styles.header}>
         <h1 className={styles.title}>Products</h1>
-        {isAuthenticated && (
+        {isAdmin && (
           <button onClick={handleOpenCreateModal} className={styles.addButton}>
             + Add Product
           </button>

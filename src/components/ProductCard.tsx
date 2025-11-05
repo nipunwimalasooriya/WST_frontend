@@ -10,7 +10,7 @@ interface ProductCardProps {
 }
 
 export const ProductCard = ({ product, onEdit, onDelete }: ProductCardProps) => {
-  const { isAuthenticated } = useAuth();
+  const { isAdmin } = useAuth();
   
   const placeholderImage = 'https://via.placeholder.com/400x200?text=No+Image';
 
@@ -26,7 +26,7 @@ export const ProductCard = ({ product, onEdit, onDelete }: ProductCardProps) => 
         <p className={styles.description}>{product.description}</p>
         <p className={styles.price}>${Number(product.price).toFixed(2)}</p>
         
-        {isAuthenticated && (
+        {isAdmin && (
           <div className={styles.actions}>
             <button
               onClick={() => onEdit(product)}

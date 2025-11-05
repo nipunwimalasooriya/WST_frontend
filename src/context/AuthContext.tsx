@@ -1,9 +1,10 @@
-import { createContext, useState, useEffect, type ReactNode } from 'react';
+import { createContext, useState, useEffect, type ReactNode, useMemo } from 'react';
 import type { AuthUser } from '../types';
 interface AuthContextType {
   user: AuthUser | null;
   token: string | null;
   isAuthenticated: boolean;
+  isAdmin: boolean;
   login: (user: AuthUser, token: string) => void;
   logout: () => void;
 }
@@ -38,13 +39,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     localStorage.removeItem('token');
   };
 
-  const value = {
-    user,
-    token,
-    isAuthenticated: !!token, 
-    login,
-    logout,
-  };
+  const value = useMemo(
+    () => ({
+      user,
+      token,
+      isAuthenticated: !!token,
+      isAdmin: !!user && user.role === 'ADMIN', 
+      login,
+      logout,
+    }),
+    [user, token]
+  );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

@@ -5,7 +5,7 @@ import { useTheme } from "../hooks/useTheme";
 import styles from "./Navbar.module.css";
 
 export const Navbar = () => {
-  const { isAuthenticated, user, logout } = useAuth();
+  const { isAuthenticated, user, logout, isAdmin } = useAuth();
   const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -34,7 +34,8 @@ export const Navbar = () => {
             />
           </Link>
           <div className={styles.desktopLinks}>
-            <Link to="/analytics">Analytics</Link>
+            {isAdmin && <Link to="/analytics">Analytics</Link>}
+            {isAdmin && <Link to="/users">User Management</Link>}
           </div>
         </div>
 
@@ -70,9 +71,16 @@ export const Navbar = () => {
           <Link to="/" onClick={closeMenu}>
             Products
           </Link>
-          <Link to="/analytics" onClick={closeMenu}>
-            Analytics
-          </Link>
+          {isAdmin && (
+            <Link to="/analytics" onClick={closeMenu}>
+              Analytics
+            </Link>
+          )}
+          {isAdmin && (
+            <Link to="/users" onClick={closeMenu}>
+              User Management
+            </Link>
+          )}
           <hr className={styles.divider} />
           {isAuthenticated ? (
             <>
