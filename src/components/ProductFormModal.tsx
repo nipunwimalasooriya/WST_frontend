@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
 import apiClient from '../services/api';
 import styles from './Modal.module.css';
-import { toast } from 'react-hot-toast'; // <-- Import toast
+import { toast } from 'react-hot-toast'; 
 import type { Product, ProductInput } from '../types';
 
 interface ProductFormModalProps {
-  // ... (props are the same)
   productToEdit: Product | null;
   onClose: () => void;
   onSave: (product: Product) => void;
@@ -19,9 +18,6 @@ export const ProductFormModal = ({
   const [formData, setFormData] = useState<ProductInput>({
     name: '', description: '', price: 0, imageData: '',
   });
-  // const [error, setError] = useState(''); // <-- Remove
-
-  // ... (useEffect and handleChange are the same)
   useEffect(() => {
     if (productToEdit) {
       setFormData({
@@ -60,7 +56,7 @@ export const ProductFormModal = ({
     e.preventDefault();
     try {
       let savedProduct: Product;
-      const toastId = toast.loading('Saving product...'); // <-- Loading toast
+      const toastId = toast.loading('Saving product...'); 
 
       if (productToEdit) {
         const response = await apiClient.put<Product>(
@@ -72,12 +68,12 @@ export const ProductFormModal = ({
         savedProduct = response.data;
       }
       
-      toast.success('Product saved!', { id: toastId }); // <-- Success toast
+      toast.success('Product saved!', { id: toastId }); 
       onSave(savedProduct);
       onClose();
     } catch (err: any) {
       const message = err.response?.data?.message || 'Failed to save product';
-      toast.error(message); // <-- Error toast
+      toast.error(message); 
     }
   };
 
@@ -88,8 +84,6 @@ export const ProductFormModal = ({
           {productToEdit ? 'Edit Product' : 'Create Product'}
         </h2>
         <form onSubmit={handleSubmit} className={styles.form}>
-          {/* ... all form inputs are the same ... */}
-          {/* We remove the {error} <p> tag */}
           <div className={styles.inputGroup}>
             <label htmlFor="name">Name</label>
             <input

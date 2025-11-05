@@ -16,7 +16,6 @@ export const ConfirmDeleteModal = ({
   }
 
   return (
-    // StopPropagation prevents the modal from closing when clicking inside
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <h2 className={styles.title}>Are you sure?</h2>

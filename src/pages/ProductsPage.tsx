@@ -3,24 +3,21 @@ import apiClient from '../services/api';
 import { useAuth } from '../hooks/useAuth';
 import { ProductCard } from '../components/ProductCard';
 import { ProductFormModal } from '../components/ProductFormModal';
-import { ConfirmDeleteModal } from '../components/ConfirmDeleteModal'; // <-- 1. Import new modal
+import { ConfirmDeleteModal } from '../components/ConfirmDeleteModal'; 
 import styles from './ProductsPage.module.css';
 import { toast } from 'react-hot-toast';
 import type { Product } from '../types';
 
-// We no longer need the custom toast function, so it's been removed.
 
 export const ProductsPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // State for the CREATE/EDIT modal
   const [isFormModalOpen, setIsFormModalOpen] = useState(false);
   const [productToEdit, setProductToEdit] = useState<Product | null>(null);
   
-  // State for the DELETE modal
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false); // <-- 2. Add state for delete modal
-  const [productToDelete, setProductToDelete] = useState<number | null>(null); // <-- 3. Add state for product ID
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false); 
+  const [productToDelete, setProductToDelete] = useState<number | null>(null); 
 
   const { isAuthenticated } = useAuth();
 
@@ -65,20 +62,18 @@ export const ProductsPage = () => {
   
   // --- Delete Modal Handlers ---
   
-  // 4. This function now just opens the modal
   const handleDeleteProduct = (id: number) => {
-    setProductToDelete(id); // Set which product to delete
-    setIsDeleteModalOpen(true); // Open the modal
+    setProductToDelete(id); 
+    setIsDeleteModalOpen(true); 
   };
 
   const handleCloseDeleteModal = () => {
-    setIsDeleteModalOpen(false); // Close the modal
-    setProductToDelete(null); // Clear the ID
+    setIsDeleteModalOpen(false); 
+    setProductToDelete(null); 
   };
 
-  // 5. This is the function that runs when "Delete" is clicked
   const performDelete = async () => {
-    if (productToDelete === null) return; // Safety check
+    if (productToDelete === null) return; 
 
     const toastId = toast.loading('Deleting product...');
     try {
@@ -89,7 +84,7 @@ export const ProductsPage = () => {
       toast.error('Failed to delete product.', { id: toastId });
     }
     
-    handleCloseDeleteModal(); // Close the modal
+    handleCloseDeleteModal(); 
   };
 
 
@@ -113,7 +108,7 @@ export const ProductsPage = () => {
               key={product.id}
               product={product}
               onEdit={handleOpenEditModal}
-              onDelete={handleDeleteProduct} // This now opens the delete modal
+              onDelete={handleDeleteProduct} 
             />
           ))
         ) : (
@@ -121,7 +116,6 @@ export const ProductsPage = () => {
         )}
       </div>
 
-      {/* Create/Edit Modal */}
       {isFormModalOpen && (
         <ProductFormModal
           productToEdit={productToEdit}
@@ -130,7 +124,6 @@ export const ProductsPage = () => {
         />
       )}
       
-      {/* 6. Render the new Delete Modal */}
       <ConfirmDeleteModal
         isOpen={isDeleteModalOpen}
         onClose={handleCloseDeleteModal}

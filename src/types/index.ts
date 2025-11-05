@@ -1,10 +1,9 @@
-// User data as stored in the JWT payload
+
 export interface AuthUser {
   id: number;
   email: string;
 }
 
-// The full product object from the database
 export interface Product {
   id: number;
   user_id: number;
@@ -16,7 +15,6 @@ export interface Product {
   updated_at: string;
 }
 
-// Data needed to create or update a product
 export type ProductInput = {
   name: string;
   description?: string;

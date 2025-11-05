@@ -4,7 +4,7 @@ import { Navbar } from './components/Navbar';
 import { LoginPage } from './pages/LoginPage';
 import { RegisterPage } from './pages/RegisterPage';
 import { ProductsPage } from './pages/ProductsPage';
-import { AnalyticsPage } from './pages/AnalyticsPage'; // <-- Import
+import { AnalyticsPage } from './pages/AnalyticsPage'; 
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
       <main style={{ padding: '0 2rem' }}>
         <Routes>
           <Route path="/" element={<ProductsPage />} />
-          <Route path="/analytics" element={<AnalyticsPage />} /> {/* <-- Add Route */}
+          <Route path="/analytics" element={<AnalyticsPage />} /> 
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
         </Routes>

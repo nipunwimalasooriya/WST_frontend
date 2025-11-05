@@ -4,7 +4,6 @@ import { toast } from 'react-hot-toast';
 import styles from './AnalyticsPage.module.css';
 import type { Product } from '../types';
 
-// A simple card component for displaying a stat
 const StatCard = ({ title, value }: { title: string; value: string | number }) => (
   <div className={styles.statCard}>
     <h3 className={styles.statTitle}>{title}</h3>
@@ -16,7 +15,6 @@ export const AnalyticsPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch all products
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -32,7 +30,6 @@ export const AnalyticsPage = () => {
     fetchProducts();
   }, []);
 
-  // Calculate stats using useMemo
   const stats = useMemo(() => {
     if (products.length === 0) {
       return { total: 0, avgPrice: 0, highest: 0, lowest: 0 };

@@ -3,20 +3,19 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import apiClient from '../services/api';
 import styles from '../components/Form.module.css';
-import { toast } from 'react-hot-toast'; // <-- Import toast
+import { toast } from 'react-hot-toast'; 
 import type { AuthUser } from '../types';
 
 export const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [error, setError] = useState(''); // <-- We don't need this anymore
   const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !password) {
-      toast.error('Email and password are required'); // <-- Use toast
+      toast.error('Email and password are required'); 
       return;
     }
     try {
@@ -25,11 +24,11 @@ export const LoginPage = () => {
         { email, password }
       );
       login(response.data.user, response.data.token);
-      toast.success('Logged in successfully!'); // <-- Success toast
+      toast.success('Logged in successfully!'); 
       navigate('/');
     } catch (err: any) {
       const message = err.response?.data?.message || 'Login failed';
-      toast.error(message); // <-- Error toast
+      toast.error(message); 
     }
   };
 
@@ -57,7 +56,6 @@ export const LoginPage = () => {
             className={styles.input}
           />
         </div>
-        {/* We removed the {error} <p> tag */}
         <button type="submit" className={`${styles.button} ${styles.secondary}`}>
           Login
         </button>

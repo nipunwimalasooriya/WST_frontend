@@ -8,15 +8,12 @@ interface AuthContextType {
   logout: () => void;
 }
 
-// Create the context
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Create the Provider component
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<AuthUser | null>(null);
   const [token, setToken] = useState<string | null>(null);
 
-  // On initial app load, check localStorage for existing token/user
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
     const storedUser = localStorage.getItem('user');
@@ -44,7 +41,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const value = {
     user,
     token,
-    isAuthenticated: !!token, // True if a token exists
+    isAuthenticated: !!token, 
     login,
     logout,
   };
