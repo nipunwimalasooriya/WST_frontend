@@ -19,7 +19,7 @@ export const ProductsPage = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false); 
   const [productToDelete, setProductToDelete] = useState<number | null>(null); 
 
-  const { isAuthenticated, isAdmin } = useAuth();
+  const { isAdmin } = useAuth();
 
   useEffect(() => {
     const fetchProducts = async () => {
