@@ -25,7 +25,12 @@ export const Navbar = () => {
       <nav className={styles.navbar}>
         <div className={styles.navLeft}>
           <Link to="/" className={styles.brand} onClick={closeMenu}>
-            ProductsApp
+            {/* --- 1. ADD YOUR LOGO IMAGE HERE --- */}
+            <img 
+              src={theme === 'light' ? '/productlogo.svg' : '/productlogodark.svg'}
+              alt="Logo" 
+              className={styles.logo} 
+            />
           </Link>
           {/* Desktop Links */}
           <div className={styles.desktopLinks}>
