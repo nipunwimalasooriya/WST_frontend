@@ -1,3 +1,4 @@
+
 import { useAuth } from '../hooks/useAuth';
 import type { Product } from '../types';
 import styles from './ProductCard.module.css';
@@ -9,8 +10,8 @@ interface ProductCardProps {
 }
 
 export const ProductCard = ({ product, onEdit, onDelete }: ProductCardProps) => {
-  const { user } = useAuth();
-  const isOwner = user?.id === product.user_id;
+  const { isAuthenticated } = useAuth();
+  
   const placeholderImage = 'https://via.placeholder.com/400x200?text=No+Image';
 
   return (
@@ -24,7 +25,8 @@ export const ProductCard = ({ product, onEdit, onDelete }: ProductCardProps) => 
         <h3 className={styles.title}>{product.name}</h3>
         <p className={styles.description}>{product.description}</p>
         <p className={styles.price}>${Number(product.price).toFixed(2)}</p>
-        {isOwner && (
+        
+        {isAuthenticated && (
           <div className={styles.actions}>
             <button
               onClick={() => onEdit(product)}
