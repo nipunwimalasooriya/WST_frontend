@@ -1,3 +1,4 @@
+
 .container {
   max-width: 1100px;
   margin: 0 auto;
@@ -10,14 +11,19 @@
   margin: 2rem 0;
 }
 
-.userTable {
+.tableWrapper {
   width: 100%;
-  border-collapse: collapse;
+  overflow-x: auto; 
   background-color: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  overflow: hidden;
   box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.userTable {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px; 
 }
 
 .userTable th,
@@ -26,6 +32,11 @@
   text-align: left;
   border-bottom: 1px solid var(--border-color);
   color: var(--text-primary);
+  white-space: nowrap; 
+}
+
+.userTable tr:last-child td {
+  border-bottom: none;
 }
 
 .userTable th {
@@ -46,42 +57,4 @@
 .selfText {
   color: var(--text-secondary);
   font-style: italic;
-}
-
-@media (max-width: 768px) {
-  .userTable thead {
-    display: none;
-  }
-
-  .userTable tr {
-    display: block;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    box-shadow: 0 2px 4px var(--shadow-color);
-  }
-
-  .userTable td {
-    display: block;
-    padding: 0.75rem 1rem;
-    text-align: right; 
-    position: relative;
-    border-bottom: 1px solid var(--border-color);
-  }
-
-  .userTable td:last-child {
-    border-bottom: none;
-  }
-
-  .userTable td::before {
-    content: attr(data-label);
-    position: absolute;
-    left: 1rem;
-    font-weight: 600;
-    color: var(--text-secondary);
-  }
-
-  .roleSelect {
-    width: 100%;
-  }
 }

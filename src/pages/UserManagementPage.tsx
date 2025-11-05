@@ -53,40 +53,41 @@ export const UserManagementPage = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.pageTitle}>User Management</h1>
-      <table className={styles.userTable}>
-        <thead>
-          <tr>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Member Since</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <tr key={user.id}>
-              {/* --- Add data-label attributes --- */}
-              <td data-label="Email">{user.email}</td>
-              <td data-label="Role">{user.role}</td>
-              <td data-label="Member Since">{new Date(user.created_at).toLocaleDateString()}</td>
-              <td data-label="Actions">
-                {adminUser?.id === user.id ? (
-                  <span className={styles.selfText}> (This is you) </span>
-                ) : (
-                  <select
-                    value={user.role}
-                    onChange={(e) => handleRoleChange(user.id, e.target.value as UserRole)}
-                    className={styles.roleSelect}
-                  >
-                    <option value="USER">User</option>
-                    <option value="ADMIN">Admin</option>
-                  </select>
-                )}
-              </td>
+      <div className={styles.tableWrapper}>
+        <table className={styles.userTable}>
+          <thead>
+            <tr>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Member Since</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {users.map((user) => (
+              <tr key={user.id}>
+                <td>{user.email}</td>
+                <td>{user.role}</td>
+                <td>{new Date(user.created_at).toLocaleDateString()}</td>
+                <td>
+                  {adminUser?.id === user.id ? (
+                    <span className={styles.selfText}> (This is you) </span>
+                  ) : (
+                    <select
+                      value={user.role}
+                      onChange={(e) => handleRoleChange(user.id, e.target.value as UserRole)}
+                      className={styles.roleSelect}
+                    >
+                      <option value="USER">User</option>
+                      <option value="ADMIN">Admin</option>
+                    </select>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
