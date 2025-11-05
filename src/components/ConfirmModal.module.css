@@ -1,0 +1,64 @@
+/* src/components/ConfirmModal.module.css */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+}
+
+.modal {
+  background-color: var(--bg-card);
+  padding: 2rem;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.message {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.actions button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.cancelButton {
+  background-color: var(--bg-default);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+.cancelButton:hover {
+  border-color: var(--text-primary);
+}
+
+.confirmButton {
+  background-color: var(--danger-color);
+  color: white;
+}
+.confirmButton:hover {
+  background-color: var(--danger-hover);
+}

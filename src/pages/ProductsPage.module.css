@@ -1,0 +1,45 @@
+/* src/pages/ProductsPage.module.css */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.addButton {
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--secondary-color);
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+.addButton:hover {
+  background-color: var(--secondary-hover);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+/* Responsive grid */
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

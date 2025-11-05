@@ -1,0 +1,163 @@
+/* src/components/Navbar.module.css */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--bg-card);
+  box-shadow: 0 2px 4px var(--shadow-color);
+  border-bottom: 1px solid var(--border-color);
+  height: 65px; /* Set a fixed height */
+}
+
+.navLeft {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.brand {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.desktopLinks {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  color: var(--text-secondary);
+}
+
+.desktopLinks a {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.desktopLinks a:hover {
+  color: var(--primary-color);
+}
+
+.logoutButton {
+  border: none;
+  background-color: transparent;
+  color: var(--danger-color);
+  font-weight: 500;
+  padding: 0.25rem;
+}
+.logoutButton:hover {
+  color: var(--danger-hover);
+}
+
+.themeToggle {
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-default);
+  color: var(--text-primary);
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+}
+.themeToggle:hover {
+  border-color: var(--text-primary);
+}
+
+/* --- Hamburger Button Styles --- */
+.hamburgerButton {
+  display: none; /* Hidden by default */
+  flex-direction: column;
+  justify-content: space-around;
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001; /* Above mobile menu */
+}
+
+.hamburgerIcon {
+  display: block;
+  width: 2rem;
+  height: 3px;
+  background-color: var(--text-primary);
+  border-radius: 3px;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.hamburgerIcon::before,
+.hamburgerIcon::after {
+  content: '';
+  position: absolute;
+  width: 2rem;
+  height: 3px;
+  background-color: var(--text-primary);
+  border-radius: 3px;
+  left: 0;
+  transition: transform 0.3s ease;
+}
+
+.hamburgerIcon::before {
+  transform: translateY(-10px);
+}
+
+.hamburgerIcon::after {
+  transform: translateY(10px);
+}
+
+/* --- Mobile Menu Styles --- */
+.mobileMenu {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 65px; /* Below the navbar */
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 65px);
+  background-color: var(--bg-card);
+  z-index: 1000;
+  padding: 2rem;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.mobileMenu a,
+.mobileMenu button {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.mobileUser {
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.mobileLogoutButton {
+  background: none;
+  border: none;
+  color: var(--danger-color);
+  text-align: left;
+  padding: 0;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--border-color);
+}
+
+/* --- Responsive Media Query --- */
+@media (max-width: 768px) {
+  .desktopLinks {
+    display: none; /* Hide desktop links */
+  }
+
+  .hamburgerButton {
+    display: flex; /* Show hamburger button */
+  }
+
+  .mobileMenu {
+    display: flex; /* Show mobile menu when active */
+  }
+}

@@ -1,0 +1,66 @@
+/* src/index.css */
+
+/* Define all our colors as variables */
+:root {
+  /* Light Mode */
+  --bg-default: #f4f4f5;
+  --bg-card: #ffffff;
+  --text-primary: #18181b;
+  --text-secondary: #71717a;
+  --border-color: #d4d4d8;
+  --shadow-color: rgba(0, 0, 0, 0.05);
+  --primary-color: #3b82f6;
+  --primary-hover: #2563eb;
+  --secondary-color: #22c55e;
+  --secondary-hover: #16a34a;
+  --danger-color: #ef4444;
+  --danger-hover: #dc2626;
+  --warning-color: #f59e0b;
+  --warning-hover: #d97706;
+}
+
+/* Dark Mode */
+body[data-theme='dark'] {
+  --bg-default: #18181b;
+  --bg-card: #27272a;
+  --text-primary: #f4f4f5;
+  --text-secondary: #a1a1aa;
+  --border-color: #52525b;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  
+  /* You can keep brand colors the same, or mute them */
+  --primary-color: #3b82f6;
+  --primary-hover: #60a5fa;
+  --secondary-color: #22c55e;
+  --secondary-hover: #4ade80;
+  --danger-color: #ef4444;
+  --danger-hover: #f87171;
+  --warning-color: #f59e0b;
+  --warning-hover: #facc15;
+}
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif;
+  background-color: var(--bg-default);
+  color: var(--text-primary);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+}
