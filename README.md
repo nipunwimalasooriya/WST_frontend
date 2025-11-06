@@ -1,73 +1,83 @@
-# React + TypeScript + Vite
+```markdown
+# Products App (Frontend)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend for a full-stack CRUD application, built with React, Vite, and TypeScript. It features a responsive UI, light/dark modes, and a complete role-based access system where "Admins" can manage products and users, while "Users" and guests can only view products.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* **Full CRUD UI:** Create, Read, Update, and Delete products.
+* **User Authentication:** Login and Register pages with `react-hot-toast` notifications.
+* **Role-Based Access Control:**
+    * Guests and Users can view products and analytics.
+    * Admins see "Add Product", "Edit", and "Delete" buttons.
+    * Admin-only pages (`/analytics`, `/users`) are protected by a private route.
+* **User Management Page:** Admins can view a responsive table of all users and change their roles (User/Admin).
+* **Analytics Page:** A simple dashboard that calculates total products, average price, etc.
+* **Light/Dark Mode:** A theme-switching context and toggle in the navbar that remembers the user's preference in `localStorage`.
+* **Responsive Design:**
+    * Sticky navbar with a hamburger menu for mobile.
+    * Responsive product grid.
+    * Responsive (horizontally scrollable) table for User Management.
+* **Modals:** Custom-built modals (using pure CSS) for creating/editing products and confirming deletions.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tech Stack
 
-## Expanding the ESLint configuration
+* **Framework:** React
+* **Build Tool:** Vite
+* **Language:** TypeScript
+* **Styling:** CSS Modules (No libraries, pure CSS)
+* **Routing:** `react-router-dom`
+* **API Client:** `axios`
+* **State Management:** React Context API (`AuthContext`, `ThemeContext`)
+* **Notifications:** `react-hot-toast`
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🚀 Local Setup & Installation
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/your-username/my-crud-frontend.git](https://github.com/your-username/my-crud-frontend.git)
+    cd my-crud-frontend
+    ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+3.  **Set up the Backend:**
+    This frontend requires the **[Products App API](https://github.com/your-username/my-crud-backend)** to be running. Please follow the setup instructions in that repository first.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+4.  **Create `.env` file:**
+    Create a `.env` file in the root of the project to point to your backend server.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+    ```ini
+    # .env.example
+    
+    # URL for your running backend (local or deployed on Render)
+    VITE_BACKEND_URL=http://localhost:4000/api
+    ```
+
+5.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+    The app will be running at `http://localhost:5173` (or a similar port).
+
+---
+
+## 📜 Available Scripts
+
+* **`npm run dev`:** Starts the Vite development server with hot-reloading.
+* **`npm run build`:** Bundles the app for production into the `/dist` folder.
+* **`npm run preview`:** Serves the production build locally to test it.
+
+---
+
+## 📁 Project Structure
+
+The `src` folder is organized to be scalable and easy to maintain.
+src/ ├── components/ │ ├── AdminRoute.tsx # Protects routes for Admins only │ ├── ConfirmDeleteModal.tsx # Modal for "Are you sure?" │ ├── ConfirmModal.module.css # Styles for delete modal │ ├── Form.module.css # Styles for Login/Register forms │ ├── Modal.module.css # Styles for Create/Edit modal │ ├── Navbar.tsx # Main responsive navbar │ ├── Navbar.module.css # Styles for navbar │ ├── ProductCard.tsx # Component for a single product │ ├── ProductCard.module.css # Styles for product card │ └── ProductFormModal.tsx # Modal for Create/Edit forms │ ├── context/ │ ├── AuthContext.tsx # Global state for user, token, role, isLoading │ └── ThemeContext.tsx # Global state for theme (light/dark) │ ├── hooks/ │ ├── useAuth.ts # Custom hook for easy AuthContext access │ └── useTheme.ts # Custom hook for easy ThemeContext access │ ├── pages/ │ ├── AnalyticsPage.tsx # Admin page for product stats │ ├── AnalyticsPage.module.css │ ├── LoginPage.tsx # Login page │ ├── ProductsPage.tsx # Main page, shows product grid │ ├── ProductsPage.module.css │ ├── RegisterPage.tsx # Registration page │ ├── UserManagementPage.tsx # Admin page for managing user roles │ └── UserManagementPage.module.css │ ├── services/ │ └── api.ts # Centralized axios client with auth interceptor │ ├── types/ │ └── index.ts # All TypeScript types (User, Product, etc.) │ ├── App.tsx # Main app component with router ├── index.css # Global CSS reset and CSS Variables (for themes) └── main.tsx # React entry point (renders App with Providers)
