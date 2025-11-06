@@ -48,7 +48,7 @@ export const UserManagementPage = () => {
     }
   };
 
-  if (loading) return <p>Loading users...</p>;
+  if (loading) return <p style={{ textAlign: 'center', marginTop: '2rem' }}>Loading users...</p>;
 
   return (
     <div className={styles.container}>
